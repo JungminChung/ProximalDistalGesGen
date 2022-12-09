@@ -115,7 +115,7 @@ def rot_vec_to_abs_pos_vec(line, nodes):
     assert (len(line) // 3) * 3 == len(line), 'check the num of rotation point and joint num'
 
     node_idx = 0 
-    for i in range(len(line)//3): # 전체 joint 갯수
+    for i in range(len(line)//3): # total num of joints
         stepi = i*3
         z_deg = float(line[stepi])
         x_deg = float(line[stepi+1])
@@ -163,12 +163,12 @@ def nodes_to_abs_vector(nodes):
 def nodes_to_child_list(nodes): 
     return [node['children'] for node in nodes]
 
-def make_image_from_abs_childlist(abs_vector, child_list, dataset='trinity'): 
+def make_image_from_abs_childlist(abs_vector, child_list): 
     bg_size = 512 
-    size_mag = 2.0 if dataset == 'trinity' else 300.0
+    size_mag = 2.0 
 
     x_offset = bg_size * (1/2)
-    y_offset = bg_size * (1/3) if dataset == 'trinity' else bg_size * (2/3)
+    y_offset = bg_size * (1/3) 
 
     img = np.zeros([bg_size, bg_size, 3],dtype=np.uint8)
     img.fill(255)
@@ -176,7 +176,7 @@ def make_image_from_abs_childlist(abs_vector, child_list, dataset='trinity'):
     for vec, children in zip(abs_vector, child_list) : 
         if any([(v is None) or (np.isnan(v)) for v in vec]): continue 
         x = int((vec[0] * size_mag) + x_offset)
-        y = int(bg_size - ((vec[1] * size_mag) + y_offset)) if dataset == 'trinity' else int(((vec[1] * size_mag) + y_offset))
+        y = int(bg_size - ((vec[1] * size_mag) + y_offset)) 
 
         color = (255, 0, 0)
         img = cv2.circle(img, (x, y), 3, color, -1)
@@ -184,7 +184,7 @@ def make_image_from_abs_childlist(abs_vector, child_list, dataset='trinity'):
         for child_idx in children :
             if any([(v is None) or (np.isnan(v)) for v in abs_vector[child_idx]]): continue 
             target_x = int(abs_vector[child_idx][0] * size_mag + x_offset)
-            target_y = int(bg_size - ((abs_vector[child_idx][1] * size_mag) + y_offset)) if dataset == 'trinity' else int(((abs_vector[child_idx][1] * size_mag) + y_offset))
+            target_y = int(bg_size - ((abs_vector[child_idx][1] * size_mag) + y_offset)) 
             img = cv2.line(img, (x, y), (target_x, target_y), (0, 0, 180), 1)
                 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -236,7 +236,7 @@ def align_rot_vec(line):
     assert (len(line) // 3) * 3 == len(line), 'check the num of rotation point and joint num'
 
     results = []
-    for i in range(len(line)//3): # 전체 joint 갯수
+    for i in range(len(line)//3): # total num of joints
         stepi = i*3
         z_deg = float(line[stepi])
         x_deg = float(line[stepi+1])
