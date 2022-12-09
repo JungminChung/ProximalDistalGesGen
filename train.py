@@ -78,12 +78,12 @@ def parse_args():
     parser.add_argument('--disc_ch', type=int, default='128', help='basic dimension size in discriminator conv')
 
     # Loss setting 
-    parser.add_argument('--lambda_d_loss', type=float, default='1', help='lambda multiply for d loss during train discriminator')
-    parser.add_argument('--lambda_gp', type=float, default='1', help='lambda multiply for gradient penalty during train discriminator')
-    parser.add_argument('--lambda_g_loss', type=float, default='1', help='lambda multiply for g loss during train PRGG generator')
+    parser.add_argument('--lambda_d_loss', type=float, default='0', help='lambda multiply for d loss during train discriminator')
+    parser.add_argument('--lambda_gp', type=float, default='0', help='lambda multiply for gradient penalty during train discriminator')
+    parser.add_argument('--lambda_g_loss', type=float, default='0', help='lambda multiply for g loss during train PRGG generator')
     parser.add_argument('--lambda_mse', type=float, default='1', help='lambda multiply for mse loss during train PRGG generator')
-    parser.add_argument('--lambda_continuity', type=float, default='1', help='lambda multiply for continuity loss during train PRGG generator')
-    parser.add_argument('--lambda_bonelength', type=float, default='1', help='lambda multiply for bonelength loss during train PRGG generator')
+    parser.add_argument('--lambda_continuity', type=float, default='0', help='lambda multiply for continuity loss during train PRGG generator')
+    parser.add_argument('--lambda_bonelength', type=float, default='0', help='lambda multiply for bonelength loss during train PRGG generator')
 
     return parser.parse_args()
 
