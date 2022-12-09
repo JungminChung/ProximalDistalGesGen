@@ -77,14 +77,13 @@ save_folder
  └── hierarchyMean.bvh 
 ```
 
-### Make Configurations 
+## Make Configurations 
 
 As mentioned in paper, our model generates motion based on human's joint cofigurations(roles and shapes). We provide pre-designed paper version configs(typeA~typeG) in configs folder. 
 
 In addition, you can also make your own configs by modifying list value named `steps` in file `misc/makeConfigs.py`. Make sure change `suffix` value in case of overwriting configs files. 
 
-### Train 
-
+## Train 
 
 ```
 python train.py --results_path results/folder/path \
@@ -99,6 +98,17 @@ During training, middle point save file will be saved in sub-folder under `resul
 Pre-trained weight and meta-data used for reconstruct PDGG networks will be open soon. 
 
 
-### Inference 
+## Inference 
 
-WIP
+```
+python inference.py --input_wav path/to/inference/target/wav/file \
+                    --trained_model_folder trained/results/folder/path 
+```
+
+- input_wav : Wav format audio file. 
+- trained_model_folder : Folder that contains trained .ckpt and args.txt file. This folder is generated from `results_path` argment in train process. 
+- input_motion : Motion bvh or numpy file paired to input_wav file. If given, GT movements presented on left side of generated mp4 file. 
+
+## Evaluate 
+
+WIP 
