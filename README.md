@@ -109,6 +109,13 @@ python inference.py --input_wav path/to/inference/target/wav/file \
 - trained_model_folder : Folder that contains trained .ckpt and args.txt file. This folder is generated from `results_path` argment in train process. 
 - input_motion : Motion bvh or numpy file paired to input_wav file. If given, GT movements presented on left side of generated mp4 file. 
 
+After inference process finished, you can find results in `trained_model_folder`. Front rendered video(.mp4) of skeleton character's motion and its keypoint coordinates numpy file(.npy) are generated. Below is the example of infered mp4 video result from default train setting. 
+
+<p align="center">
+  <img src="source/infered.gif" />
+</p>
+
+
 ## Evaluate 
 
 WIP 
