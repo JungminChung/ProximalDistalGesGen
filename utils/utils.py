@@ -105,7 +105,12 @@ def convert_type(value):
             return value 
 
 def find_last_model_paths(model_folder_path, inference_all_models):
-    gens = [model for model in os.listdir(model_folder_path) if 'gen' in model and model.endswith('ckpt')]
+    gens = [model for model in os.listdir(model_folder_path) if 'gen' in model and model.endswith('ckpt') and not model.startswith('._')]
+    
+    if len(gens) == 1 : 
+        print(f'find 1 model')
+        return [os.path.join(model_folder_path, gens[0])]
+
     max_step = max([int(gen[2]) for gen in gens])
 
     last_model_paths = []
