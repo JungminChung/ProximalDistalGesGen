@@ -97,6 +97,10 @@ During training, middle point save file will be saved in sub-folder under `resul
 
 Pre-trained weight and meta-data used for reconstruct PDGG networks will be open soon. 
 
+### Pre-trained Weight 
+
+We provide paper version pre-trained model weight in [here](https://drive.google.com/file/d/15qp8apU0VeuXI9dx2RUmQ99rDxtyz2W0/view?usp=share_link). After download and unzip, you can find argument file(.txt) and trained weight file(.ckpt). Place them in one folder and use the folder path as the input arguments for inference and evaluate. 
+
 
 ## Inference 
 
@@ -118,4 +122,35 @@ After inference process finished, you can find results in `trained_model_folder`
 
 ## Evaluate 
 
-WIP 
+```
+python evaluation.py --gt_motion_folder dataset/test \
+                     --audio_folder test/input/folder/path \
+                     --model_folder_path trained/results/folder/path/ \
+                     --eval_net_path misc/gesture_autoencoder_checkpoint_best.bin
+```
+
+- gt_motion_folder : Pre-processed test dataset folder path.
+- audio_folder : Folder path that contains raw wav form input audio files.
+- model_folder_path : Trained model folder path. That is `trained_model_folder` in Train process. 
+- eval_net_path : Trained FGD evaluate model weight file path. please download [here](https://drive.google.com/file/d/1t_E625IkgbV7a5Otg_hsxQTQM9Y_YzdG/view?usp=sharing) and place in `misc` folder. 
+
+Evaluation results are shown as below. The values are from paper version pre-trained weights. 
+
+```
+                  | BBC Ve | BBC Li | BBC Ha | FGD fr | FGD fe
+-----------------------------------------------------------------
+ [TestSeq002.wav] | 0.6428 | 0.6834 | 0.6393 | 4.4202 | 22.0714
+ [TestSeq005.wav] | 0.6977 | 0.6894 | 0.6543 | 8.2500 | 25.7936
+ [TestSeq003.wav] | 0.6540 | 0.6915 | 0.6208 | 7.2891 | 22.3243
+ [TestSeq009.wav] | 0.6708 | 0.6801 | 0.7195 | 5.8487 | 24.9839
+ [TestSeq004.wav] | 0.6814 | 0.6975 | 0.6443 | 6.6568 | 26.0809
+ [TestSeq006.wav] | 0.6330 | 0.6272 | 0.6219 | 4.4166 | 23.9573
+ [TestSeq008.wav] | 0.6545 | 0.6939 | 0.6736 | 5.9093 | 22.0128
+ [TestSeq001.wav] | 0.6489 | 0.6716 | 0.6267 | 4.2002 | 24.3621
+ [TestSeq007.wav] | 0.6179 | 0.6334 | 0.6622 | 8.0222 | 26.0221
+ [TestSeq010.wav] | 0.5809 | 0.6223 | 0.5786 | 9.8179 | 22.9384
+-----------------------------------------------------------------
+     Average      | 0.6482 | 0.6690 | 0.6441 | 6.4831 | 24.0547
+```
+
+
