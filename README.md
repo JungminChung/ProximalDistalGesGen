@@ -132,7 +132,7 @@ python evaluation.py --gt_motion_folder dataset/test \
 - gt_motion_folder : Pre-processed test dataset folder path.
 - audio_folder : Folder path that contains raw wav form input audio files.
 - model_folder_path : Trained model folder path. That is `trained_model_folder` in Train process. 
-- eval_net_path : Trained FGD evaluate model weight file path. please download [here](https://drive.google.com/file/d/1t_E625IkgbV7a5Otg_hsxQTQM9Y_YzdG/view?usp=sharing) and place in `misc` folder. 
+- eval_net_path : Trained FGD evaluate model weight file path. please download [here](https://drive.google.com/file/d/1t_E625IkgbV7a5Otg_hsxQTQM9Y_YzdG/view?usp=share_link:) and place in `misc` folder. 
 
 Evaluation results are shown as below. The values are from paper version pre-trained weights. 
 
